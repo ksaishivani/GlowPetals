@@ -1,0 +1,49 @@
+face_shape,category,recommendation
+Oval,Hairstyle,Textured crop
+Oval,Hairstyle,Classic side part
+Oval,Hairstyle,Short quiff
+Round,Hairstyle,Textured crop
+Round,Hairstyle,High fade
+Round,Hairstyle,Side part
+Square,Hairstyle,Classic crew cut
+Square,Hairstyle,Textured crop
+Square,Hairstyle,Short quiff
+Heart,Hairstyle,Side part
+Heart,Hairstyle,Textured fringe
+Heart,Hairstyle,Medium layered cut
+Diamond,Hairstyle,Textured crop
+Diamond,Hairstyle,Side part
+Diamond,Hairstyle,Medium fringe
+Oblong,Hairstyle,Classic side part
+Oblong,Hairstyle,Textured crop
+Oblong,Hairstyle,Medium layered cut
+Oval,Beard Style,Short boxed beard
+Oval,Beard Style,Light stubble
+Oval,Beard Style,Full beard
+Round,Beard Style,Short boxed beard
+Round,Beard Style,Goatee
+Round,Beard Style,Extended goatee
+Square,Beard Style,Light stubble
+Square,Beard Style,Short boxed beard
+Square,Beard Style,Full beard
+Heart,Beard Style,Chin beard
+Heart,Beard Style,Light stubble
+Heart,Beard Style,Short beard
+Diamond,Beard Style,Short boxed beard
+Diamond,Beard Style,Light stubble
+Diamond,Beard Style,Full beard
+Oblong,Beard Style,Short boxed beard
+Oblong,Beard Style,Full beard
+Oblong,Beard Style,Light stubble
+Oval,Grooming,Neat natural grooming
+Oval,Grooming,Short clean hairstyle
+Round,Grooming,Defined beard lines
+Round,Grooming,Neat side styling
+Square,Grooming,Defined jaw grooming
+Square,Grooming,Short neat hairstyle
+Heart,Grooming,Balanced facial hair
+Heart,Grooming,Neat medium hairstyle
+Diamond,Grooming,Defined beard grooming
+Diamond,Grooming,Textured hairstyle
+Oblong,Grooming,Neat balanced styling
+Oblong,Grooming,Medium-length hairstyle

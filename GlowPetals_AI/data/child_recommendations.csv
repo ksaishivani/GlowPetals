@@ -1,0 +1,51 @@
+face_shape,category,recommendation
+Oval,Hairstyle,Short layered haircut
+Oval,Hairstyle,Medium length haircut
+Oval,Hairstyle,Simple side part
+Oval,Hairstyle,Soft natural curls
+Round,Hairstyle,Shoulder length haircut
+Round,Hairstyle,Simple layered haircut
+Round,Hairstyle,Side swept hairstyle
+Round,Hairstyle,Short natural haircut
+Square,Hairstyle,Soft layered haircut
+Square,Hairstyle,Medium length haircut
+Square,Hairstyle,Simple side part
+Square,Hairstyle,Natural textured haircut
+Heart,Hairstyle,Medium layered haircut
+Heart,Hairstyle,Side swept hairstyle
+Heart,Hairstyle,Soft natural curls
+Heart,Hairstyle,Shoulder length haircut
+Diamond,Hairstyle,Medium layered haircut
+Diamond,Hairstyle,Side swept hairstyle
+Diamond,Hairstyle,Soft natural curls
+Diamond,Hairstyle,Simple medium haircut
+Oblong,Hairstyle,Medium length haircut
+Oblong,Hairstyle,Soft layered haircut
+Oblong,Hairstyle,Side swept hairstyle
+Oblong,Hairstyle,Natural textured haircut
+Oval,Hair Care,Gentle regular hair washing
+Oval,Hair Care,Regular hair conditioning
+Oval,Hair Care,Wide tooth comb
+Round,Hair Care,Gentle regular hair washing
+Round,Hair Care,Wide tooth comb
+Round,Hair Care,Regular hair conditioning
+Square,Hair Care,Gentle regular hair washing
+Square,Hair Care,Wide tooth comb
+Heart,Hair Care,Gentle regular hair washing
+Heart,Hair Care,Regular hair conditioning
+Diamond,Hair Care,Wide tooth comb
+Diamond,Hair Care,Gentle regular hair washing
+Oblong,Hair Care,Regular hair conditioning
+Oblong,Hair Care,Wide tooth comb
+Oval,Eyewear,Round frame
+Oval,Eyewear,Square frame
+Round,Eyewear,Rectangular frame
+Round,Eyewear,Subtle square frame
+Square,Eyewear,Round frame
+Square,Eyewear,Oval frame
+Heart,Eyewear,Round frame
+Heart,Eyewear,Lightweight oval frame
+Diamond,Eyewear,Oval frame
+Diamond,Eyewear,Round frame
+Oblong,Eyewear,Round frame
+Oblong,Eyewear,Wide oval frame

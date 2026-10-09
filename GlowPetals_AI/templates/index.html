@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GlowPetals AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255, 20, 147, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(138, 43, 226, 0.18),
+                    transparent 30%
+                ),
+                #050507;
+        }
+
+        .navbar {
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            background: rgba(5,5,10,0.8);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff4fd8;
+
+            text-shadow:
+                0 0 18px rgba(255,79,216,0.7);
+        }
+
+        .hero {
+            min-height: 55vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin: 0 0 20px;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            color: #ff4fd8;
+
+            text-shadow:
+                0 0 25px rgba(255,79,216,0.6);
+        }
+
+        .hero p {
+            color: #aaaabc;
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        button {
+            border: none;
+
+            padding: 15px 28px;
+            margin: 8px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff1493,
+                    #8a2be2
+                );
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 20px rgba(255,20,147,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 30px rgba(255,20,147,0.6);
+        }
+
+        #analysis {
+            max-width: 900px;
+
+            margin: 20px auto 100px;
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            border:
+                1px solid rgba(255,79,216,0.3);
+        }
+
+        select {
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            background: #11111a;
+            color: white;
+
+            border:
+                1px solid rgba(255,79,216,0.4);
+        }
+
+        #camera-start-area {
+            margin-top: 25px;
+        }
+
+        #camera-container {
+            margin-top: 30px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 650px;
+
+            display: block;
+
+            margin: 25px auto;
+
+            border-radius: 20px;
+
+            background: black;
+
+            border:
+                2px solid #ff4fd8;
+
+            box-shadow:
+                0 0 35px rgba(255,79,216,0.4);
+        }
+
+        canvas {
+            display: none;
+        }
+
+        #status {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            color: #ff72d9;
+
+            font-weight: bold;
+        }
+
+        #result {
+            margin-top: 30px;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid rgba(255,79,216,0.3);
+        }
+
+        #result-text {
+            line-height: 1.8;
+
+            color: #eeeeee;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #makeup-tryon {
+            margin: 32px auto 0;
+            max-width: 700px;
+        }
+
+        .makeup-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .makeup-controls input[type="color"] {
+            width: 44px;
+            height: 38px;
+            padding: 2px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: transparent;
+        }
+
+        #makeup-strength {
+            width: min(180px, 38vw);
+            accent-color: #bc7272;
+        }
+
+        .blush-control {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #makeup-preview {
+            display: block;
+            width: min(100%, 520px);
+            height: auto;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 12px;
+        }
+
+        .recommendation-list {
+            margin: 24px auto 0;
+            max-width: 760px;
+            text-align: left;
+        }
+
+        .recommendation-list section {
+            padding: 14px 0;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .recommendation-list h4 {
+            margin-bottom: 8px;
+            color: #f3b4bb;
+        }
+
+        .recommendation-list ul {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .product-card {
+            display: block;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.045);
+            color: white;
+            text-decoration: none;
+            transition: border-color 160ms ease, transform 160ms ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(228,166,151,0.65);
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            padding: 12px;
+            background: #f7f5f1;
+        }
+
+        .product-image-placeholder {
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1 / 1;
+            padding: 16px;
+            background: linear-gradient(135deg, #f4dce2, #e9dff5);
+            color: #563c53;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .product-details {
+            display: grid;
+            gap: 5px;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .product-details strong {
+            color: #edc2b5;
+        }
+
+        .product-details span {
+            line-height: 1.35;
+        }
+
+        .product-details small,
+        .product-details p {
+            color: #b9b5bd;
+            line-height: 1.5;
+        }
+
+        .product-details p {
+            margin: 2px 0 0;
+            font-size: 13px;
+        }
+
+        .recommendation-note,
+        .estimate-note {
+            color: #b9b5bd;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #makeup-status {
+            min-height: 1.5em;
+            color: #d9c9ce;
+            font-size: 13px;
+        }
+
+        .step-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .step-nav a {
+            color: #e9dce8;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .step-nav a:hover {
+            color: #ff4fd8;
+        }
+
+        .upload-picker {
+            display: grid;
+            justify-items: center;
+            gap: 12px;
+            max-width: 470px;
+            margin: 20px auto 0;
+            padding: 20px;
+            border: 1px dashed rgba(255,79,216,0.4);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.025);
+        }
+
+        .upload-picker label {
+            color: #f3b4bb;
+            font-weight: 700;
+        }
+
+        .upload-picker input {
+            width: 100%;
+            color: #e9dce8;
+        }
+
+        .step-section {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            padding: 44px;
+            border: 1px solid rgba(255,79,216,0.2);
+            border-radius: 26px;
+            background: rgba(255,255,255,0.045);
+        }
+
+        .step-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .step-heading h2 {
+            margin: 0 0 8px;
+            font-size: clamp(26px, 4vw, 38px);
+        }
+
+        .step-heading p:last-child {
+            color: #aaaabc;
+            line-height: 1.6;
+        }
+
+        .step-kicker {
+            margin-bottom: 8px;
+            color: #ff65d5;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .step-number {
+            display: grid;
+            flex: 0 0 48px;
+            height: 48px;
+            place-items: center;
+            border: 1px solid rgba(255,79,216,0.45);
+            border-radius: 50%;
+            color: #ff71d9;
+            font-weight: 700;
+        }
+
+        .empty-state {
+            padding: 20px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.035);
+            color: #b9b5bd;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        #suggestions .skincare-questionnaire {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #makeup-tryon {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #makeup-preview {
+            display: block;
+            width: min(100%, 620px);
+            height: auto;
+            margin: 18px auto;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 16px;
+        }
+
+        #status {
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 14px 16px;
+            }
+
+            .step-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #analysis {
+                margin: 12px;
+                padding: 28px 16px;
+            }
+
+            .step-nav {
+                gap: 10px;
+            }
+
+            .step-nav a {
+                font-size: 11px;
+            }
+
+            .step-section {
+                margin: 16px 12px 28px;
+                padding: 24px 16px;
+            }
+
+            .step-heading {
+                gap: 12px;
+            }
+
+            .step-number {
+                flex-basis: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+        <div class="logo">🌸 GlowPetals</div>
+        <div class="step-nav" aria-label="Page sections">
+            <a href="#analysis">1. Face analysis</a>
+            <a href="#suggestions">2. Suggestions</a>
+            <a href="#makeup">3. Virtual try-on</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div>
+
+            <h1>
+                Discover Your
+                <span>Unique Glow</span>
+            </h1>
+
+            <p>Upload a photo or capture one with your camera to explore your face shape, visible skin appearance, personalized product ideas, hairstyles and a virtual makeup look.</p>
+
+            <button onclick="startAnalysis()">
+                ✨ Start Face Analysis
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANALYSIS -->
+
+    <section id="analysis">
+        <div class="step-heading">
+            <span class="step-number">01</span>
+            <div>
+                <p class="step-kicker">STEP 1 OF 3</p>
+                <h2>Face analysis</h2>
+                <p>Choose a profile, then upload a clear photo or capture one with your camera.</p>
+            </div>
+        </div>
+
+        <br>
+
+
+        <!-- PROFILE -->
+
+        <select id="profile">
+
+            <option value="female">
+                👩 Female
+            </option>
+
+            <option value="male">
+                🧑 Male
+            </option>
+
+            <option value="child">
+                🧒 Child
+            </option>
+
+        </select>
+
+        <br><br>
+
+
+        <!-- CAMERA START -->
+
+        <div id="camera-start-area">
+            <button
+                id="openCameraButton"
+                onclick="openCamera()">
+                📷 Open Camera
+            </button>
+            <div class="upload-picker">
+                <label for="image-upload">Or upload a face photo</label>
+                <input id="image-upload" type="file" accept="image/*">
+                <p class="questionnaire-note">Use a well-lit, front-facing image. The photo is sent to this app's backend for analysis.</p>
+            </div>
+        </div>
+
+
+        <!-- CAMERA -->
+
+        <div
+            id="camera-container"
+            class="hidden">
+
+            <h3>🔵 Live Face Scan</h3>
+            <video id="camera" autoplay playsinline></video>
+            <canvas id="snapshot"></canvas>
+            <div class="camera-buttons">
+                <button onclick="captureFace()">✨ Capture & Analyze</button>
+                <button class="secondary-button" onclick="stopCamera()">Stop Camera</button>
+            </div>
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div id="status">
+
+            Choose an upload or open your camera to begin.
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            class="hidden">
+
+            <h2>✨ Face analysis</h2>
+            <div id="result-text">
+                Analysis result will appear here.
+            </div>
+        </div>
+
+    </section>
+
+    <section id="suggestions" class="step-section">
+        <div class="step-heading">
+            <span class="step-number">02</span>
+            <div>
+                <p class="step-kicker">STEP 2 OF 3</p>
+                <h2>Skincare, makeup & hairstyles</h2>
+                <p>Short, photo-based suggestions chosen automatically from your face shape and visible skin appearance.</p>
+            </div>
+        </div>
+        <p class="questionnaire-note">The app estimates visible shine and complexion from the photo. It cannot diagnose dry/sensitive skin or guarantee a foundation match. Lighting, makeup and camera settings can affect results.</p>
+        <div id="recommendation-list" class="recommendation-list">
+            <p class="empty-state">Analyze a photo to see a few skincare and makeup picks, plus hairstyles suited to your face shape.</p>
+        </div>
+    </section>
+
+    <section id="makeup" class="step-section">
+        <div class="step-heading">
+            <span class="step-number">03</span>
+            <div>
+                <p class="step-kicker">STEP 3 OF 3</p>
+                <h2>Virtual makeup try-on</h2>
+                <p>Preview adjustable shades on your captured or uploaded photo.</p>
+            </div>
+        </div>
+        <p id="makeup-empty" class="empty-state">Analyze a photo first to unlock virtual makeup try-on.</p>
+        <div id="makeup-tryon" class="hidden">
+            <div class="makeup-controls">
+                <label for="makeup-strength">Intensity</label>
+                <input id="makeup-strength" type="range" min="0" max="60" value="24">
+
+                <label class="blush-control" for="foundation-toggle">
+                    <input id="foundation-toggle" type="checkbox" checked>
+                    Foundation
+                </label>
+                <label class="blush-control" for="concealer-toggle">
+                    <input id="concealer-toggle" type="checkbox" checked>
+                    Concealer
+                </label>
+                <label class="blush-control" for="blush-toggle">
+                    <input id="blush-toggle" type="checkbox" checked>
+                    Blush
+                </label>
+                <label class="blush-control" for="bronzer-toggle">
+                    <input id="bronzer-toggle" type="checkbox" checked>
+                    Bronzer
+                </label>
+                <label class="blush-control" for="highlighter-toggle">
+                    <input id="highlighter-toggle" type="checkbox" checked>
+                    Highlighter
+                </label>
+                <label class="blush-control" for="mascara-toggle">
+                    <input id="mascara-toggle" type="checkbox" checked>
+                    Mascara
+                </label> 
+                <label for="lip-color">Lip color</label>
+                <input id="lip-color" type="color" value="#c97882">
+                <label for="blush-color">Blush</label>
+                <input id="blush-color" type="color" value="#ef6680">
+                <label for="bronzer-color">Bronzer</label>
+                <input id="bronzer-color" type="color" value="#855b32">
+                <label for="highlighter-color">Highlighter</label>
+                <input id="highlighter-color" type="color" value="#f6dca0">
+                <button type="button" onclick="applyNaturalMakeup()">Natural Look</button>
+                <button type="button" onclick="applyMakeup()">Apply Makeup</button>
+            </div>
+            <p id="makeup-status" aria-live="polite"></p>
+            <canvas id="makeup-preview" aria-label="Makeup preview"></canvas>
+        </div>
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="{{ url_for('static', filename='js/app.js', v='20261005-camera-release') }}"></script>
+</body>
+</html>

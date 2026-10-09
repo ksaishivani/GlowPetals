@@ -1,0 +1,559 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050507 !important;
+    color: #ffffff !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Background glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 20, 147, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(138, 43, 226, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(0, 220, 255, 0.10),
+            transparent 35%
+        );
+
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
+/* Navbar */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 7%;
+
+    background: rgba(5, 5, 10, 0.80);
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ff4fd8;
+
+    text-shadow:
+        0 0 10px rgba(255,79,216,0.8),
+        0 0 25px rgba(255,79,216,0.35);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #cfcfe0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff4fd8;
+}
+
+.navbar button {
+    border: 1px solid rgba(255,79,216,0.65);
+    background: rgba(255,79,216,0.10);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Hero */
+
+.hero {
+    min-height: 82vh;
+    padding: 80px 7%;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 15px;
+    border-radius: 25px;
+
+    color: #ff71d9;
+
+    border: 1px solid rgba(255,79,216,0.45);
+
+    background: rgba(255,79,216,0.08);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 78px);
+    line-height: 1.05;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #ff4fd8;
+
+    text-shadow:
+        0 0 15px rgba(255,79,216,0.8),
+        0 0 40px rgba(255,79,216,0.35);
+}
+
+.hero p {
+    color: #aaaabc;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+
+.primary-button {
+    border: none;
+
+    padding: 14px 26px;
+
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #ff1493,
+        #8a2be2
+    );
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px rgba(255,20,147,0.35);
+
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 35px rgba(255,20,147,0.65);
+}
+
+.secondary-button {
+    padding: 13px 24px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255,255,255,0.20);
+
+    background: rgba(255,255,255,0.05);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+/* Beauty visual */
+
+.beauty-card {
+    width: 340px;
+    height: 430px;
+
+    margin: auto;
+
+    border-radius: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,20,147,0.14),
+            rgba(138,43,226,0.10)
+        );
+
+    border: 1px solid rgba(255,79,216,0.25);
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 0 60px rgba(255,20,147,0.18);
+}
+
+.beauty-symbol {
+    font-size: 90px;
+
+    filter:
+        drop-shadow(0 0 20px #ff1493);
+
+    margin-bottom: 20px;
+}
+
+.beauty-card h2 {
+    font-size: 28px;
+}
+
+.beauty-card p {
+    color: #aaaabc;
+    margin-top: 10px;
+}
+
+/* Features */
+
+.features {
+    padding: 100px 7%;
+}
+
+.features > h2 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 45px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    padding: 32px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.045);
+
+    border: 1px solid rgba(255,255,255,0.09);
+
+    backdrop-filter: blur(20px);
+
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(255,79,216,0.50);
+
+    box-shadow:
+        0 0 30px rgba(255,20,147,0.15);
+}
+
+.feature-icon {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+.feature-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #aaaabc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.feature-card button {
+    background: none;
+    border: none;
+    color: #ff65d5;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Analysis */
+
+.analysis-section {
+    padding: 100px 7%;
+}
+
+.analysis-card {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 50px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.045);
+
+    border: 1px solid rgba(255,79,216,0.20);
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 0 50px rgba(255,20,147,0.10);
+}
+
+.analysis-card h2 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.analysis-card > p {
+    color: #aaaabc;
+    margin-bottom: 30px;
+}
+
+.profile-selection {
+    margin-bottom: 30px;
+}
+
+.profile-selection label {
+    display: block;
+    color: #ff65d5;
+    margin-bottom: 10px;
+}
+
+.profile-selection select {
+    width: 250px;
+
+    padding: 13px 17px;
+
+    border-radius: 12px;
+
+    background: #11111a;
+
+    color: white;
+
+    border: 1px solid rgba(255,79,216,0.35);
+}
+
+.skincare-questionnaire {
+    display: grid;
+    gap: 10px;
+    max-width: 520px;
+    margin: 20px auto 30px;
+    text-align: left;
+}
+
+.skincare-questionnaire h3 {
+    margin-bottom: 4px;
+    color: #f3b4bb;
+}
+
+.skincare-questionnaire label {
+    color: #e9dce8;
+}
+
+.skincare-questionnaire select,
+.skincare-questionnaire textarea {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid rgba(255,79,216,0.35);
+    border-radius: 10px;
+    background: #11111a;
+    color: white;
+    font: inherit;
+}
+
+.questionnaire-note {
+    color: #b9b5bd;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Camera */
+
+.camera-area {
+    padding: 45px 20px;
+
+    border: 1px dashed rgba(255,79,216,0.40);
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.025);
+}
+
+.camera-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.camera-area p {
+    color: #aaaabc;
+    margin: 12px 0 25px;
+}
+
+.camera-container {
+    margin-top: 30px;
+}
+
+.camera-container video {
+    width: 100%;
+    max-width: 620px;
+
+    display: block;
+
+    margin: 0 auto 25px;
+
+    border-radius: 20px;
+
+    border: 2px solid rgba(255,79,216,0.50);
+
+    box-shadow:
+        0 0 30px rgba(255,20,147,0.25);
+}
+
+.camera-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.result-box {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: rgba(255,20,147,0.08);
+
+    border: 1px solid rgba(255,79,216,0.30);
+}
+
+.result-box h3 {
+    color: #ff65d5;
+    margin-bottom: 12px;
+}
+
+/* Other sections */
+
+.simple-section {
+    padding: 100px 7%;
+    text-align: center;
+}
+
+.simple-section h2 {
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.simple-section p {
+    color: #aaaabc;
+}
+
+/* Footer */
+
+footer {
+    padding: 45px 7%;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    color: #888899;
+}
+
+footer .logo {
+    margin-bottom: 10px;
+}
+
+/* Hidden */
+
+.hidden {
+    display: none !important;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin: auto;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .beauty-card {
+        width: 280px;
+        height: 360px;
+    }
+}
